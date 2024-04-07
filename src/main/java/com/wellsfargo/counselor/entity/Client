@@ -1,0 +1,47 @@
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class Client {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+    private String name;
+
+    @ManyToOne
+    private FinancialAdvisor financialAdvisor;
+
+    protected Client() {}
+
+    public Client(String name, FinancialAdvisor financialAdvisor) {
+        this.name = name;
+        this.financialAdvisor = financialAdvisor;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Client[id=%d, name='%s']",
+                id, name);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public FinancialAdvisor getFinancialAdvisor() {
+        return financialAdvisor;
+    }
+
+    public void setFinancialAdvisor(FinancialAdvisor financialAdvisor) {
+        this.financialAdvisor = financialAdvisor;
+    }
+}
